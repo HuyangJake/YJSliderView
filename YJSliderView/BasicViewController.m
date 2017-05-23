@@ -50,5 +50,8 @@
     return self.titleArray[index];
 }
 
+- (NSInteger)initialzeIndexFoYJSliderView:(YJSliderView *)sliderView {
+    return 3;
+}
 
 @end

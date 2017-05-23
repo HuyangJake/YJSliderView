@@ -16,8 +16,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSLog(@"打印出来执行");
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        self.view.backgroundColor = [UIColor redColor];
+    });
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"%@", self.view.backgroundColor);
+    [self show];
+}
+
+- (void)show {
+    NSLog(@"jake");
+}
 
 @end

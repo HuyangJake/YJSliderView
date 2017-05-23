@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     self.titleButton.enabled = !isSelected;
     [self addSubview:self.titleButton];
     [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(1);
+        make.edges.mas_equalTo(0);
     }];
     self.onTapBtn = completeHandle;
 }
@@ -255,6 +255,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         _titleCollectionView.pagingEnabled = YES;
         _titleCollectionView.delegate = self;
         _titleCollectionView.dataSource = self;
+        _titleCollectionView.backgroundColor = [UIColor whiteColor];
         [self addSubview:_titleCollectionView];
     }
     
@@ -272,11 +273,11 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 - (UICollectionView *)contentCollectionView {
     if (_contentCollectionView == nil) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-        layout.itemSize = CGSizeMake(self.frame.size.width, self.frame.size.height - topViewHeight - 0.5);
+        layout.itemSize = CGSizeMake(self.frame.size.width, self.frame.size.height - topViewHeight);
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _contentCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.titleCollectionView.frame.size.height + 0.5, self.frame.size.width, self.frame.size.height - topViewHeight - 0.5) collectionViewLayout:layout];
+        _contentCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.titleCollectionView.frame.size.height, self.frame.size.width, self.frame.size.height - topViewHeight) collectionViewLayout:layout];
         _contentCollectionView.tag = CONTENT;
         _contentCollectionView.bounces = NO;
         _contentCollectionView.showsHorizontalScrollIndicator = NO;
