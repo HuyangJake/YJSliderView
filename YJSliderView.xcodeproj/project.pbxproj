@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1633042DE2E790C0DC68B3E5 /* libPods-YJSliderView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 512AA5DEBA31D231E75AFA16 /* libPods-YJSliderView.a */; };
+		231B28311ED2978000190DA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28301ED2978000190DA4 /* main.m */; };
+		231B28341ED2978000190DA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28331ED2978000190DA4 /* AppDelegate.m */; };
+		231B283A1ED2978000190DA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231B28381ED2978000190DA4 /* Main.storyboard */; };
+		231B283C1ED2978000190DA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231B283B1ED2978000190DA4 /* Assets.xcassets */; };
+		231B283F1ED2978000190DA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231B283D1ED2978000190DA4 /* LaunchScreen.storyboard */; };
+		231B284E1ED2BBDF00190DA4 /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B284D1ED2BBDF00190DA4 /* BasicViewController.m */; };
+		231B28511ED2BBFD00190DA4 /* SliderContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */; };
+		231B28571ED3D62300190DA4 /* YJSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28561ED3D62300190DA4 /* YJSliderView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		231B282C1ED2978000190DA4 /* YJSliderView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJSliderView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		231B28301ED2978000190DA4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		231B28321ED2978000190DA4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		231B28331ED2978000190DA4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		231B28391ED2978000190DA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		231B283B1ED2978000190DA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		231B283E1ED2978000190DA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		231B28401ED2978000190DA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		231B284C1ED2BBDF00190DA4 /* BasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicViewController.h; sourceTree = "<group>"; };
+		231B284D1ED2BBDF00190DA4 /* BasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicViewController.m; sourceTree = "<group>"; };
+		231B284F1ED2BBFD00190DA4 /* SliderContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderContentViewController.h; sourceTree = "<group>"; };
+		231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderContentViewController.m; sourceTree = "<group>"; };
+		231B28551ED3D62300190DA4 /* YJSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJSliderView.h; sourceTree = "<group>"; };
+		231B28561ED3D62300190DA4 /* YJSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJSliderView.m; sourceTree = "<group>"; };
+		512AA5DEBA31D231E75AFA16 /* libPods-YJSliderView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YJSliderView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E62B39F247D82D23ABE3D57A /* Pods-YJSliderView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJSliderView.release.xcconfig"; path = "Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView.release.xcconfig"; sourceTree = "<group>"; };
+		ED4F11EE366DE2B2F45A94D8 /* Pods-YJSliderView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJSliderView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		231B28291ED2978000190DA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1633042DE2E790C0DC68B3E5 /* libPods-YJSliderView.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		231B28231ED2978000190DA4 = {
+			isa = PBXGroup;
+			children = (
+				231B282E1ED2978000190DA4 /* YJSliderView */,
+				231B282D1ED2978000190DA4 /* Products */,
+				8CF8FA191B576370EAEB78CF /* Pods */,
+				FB1AF416501A4C9B2049A60E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		231B282D1ED2978000190DA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				231B282C1ED2978000190DA4 /* YJSliderView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		231B282E1ED2978000190DA4 /* YJSliderView */ = {
+			isa = PBXGroup;
+			children = (
+				231B28541ED3D62300190DA4 /* YJSliderView */,
+				231B28321ED2978000190DA4 /* AppDelegate.h */,
+				231B28331ED2978000190DA4 /* AppDelegate.m */,
+				231B284C1ED2BBDF00190DA4 /* BasicViewController.h */,
+				231B284D1ED2BBDF00190DA4 /* BasicViewController.m */,
+				231B284F1ED2BBFD00190DA4 /* SliderContentViewController.h */,
+				231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */,
+				231B28381ED2978000190DA4 /* Main.storyboard */,
+				231B283B1ED2978000190DA4 /* Assets.xcassets */,
+				231B283D1ED2978000190DA4 /* LaunchScreen.storyboard */,
+				231B28401ED2978000190DA4 /* Info.plist */,
+				231B282F1ED2978000190DA4 /* Supporting Files */,
+			);
+			path = YJSliderView;
+			sourceTree = "<group>";
+		};
+		231B282F1ED2978000190DA4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				231B28301ED2978000190DA4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		231B28541ED3D62300190DA4 /* YJSliderView */ = {
+			isa = PBXGroup;
+			children = (
+				231B28551ED3D62300190DA4 /* YJSliderView.h */,
+				231B28561ED3D62300190DA4 /* YJSliderView.m */,
+			);
+			path = YJSliderView;
+			sourceTree = "<group>";
+		};
+		8CF8FA191B576370EAEB78CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED4F11EE366DE2B2F45A94D8 /* Pods-YJSliderView.debug.xcconfig */,
+				E62B39F247D82D23ABE3D57A /* Pods-YJSliderView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FB1AF416501A4C9B2049A60E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				512AA5DEBA31D231E75AFA16 /* libPods-YJSliderView.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		231B282B1ED2978000190DA4 /* YJSliderView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 231B28431ED2978000190DA4 /* Build configuration list for PBXNativeTarget "YJSliderView" */;
+			buildPhases = (
+				016CCEB48BB8ECE24A5419C0 /* [CP] Check Pods Manifest.lock */,
+				231B28281ED2978000190DA4 /* Sources */,
+				231B28291ED2978000190DA4 /* Frameworks */,
+				231B282A1ED2978000190DA4 /* Resources */,
+				61089B61CC8380556FF9CCE4 /* [CP] Embed Pods Frameworks */,
+				EED1622BAB09848AEC3B3CFD /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YJSliderView;
+			productName = YJSliderView;
+			productReference = 231B282C1ED2978000190DA4 /* YJSliderView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		231B28241ED2978000190DA4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Jake;
+				TargetAttributes = {
+					231B282B1ED2978000190DA4 = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 231B28271ED2978000190DA4 /* Build configuration list for PBXProject "YJSliderView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 231B28231ED2978000190DA4;
+			productRefGroup = 231B282D1ED2978000190DA4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				231B282B1ED2978000190DA4 /* YJSliderView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		231B282A1ED2978000190DA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				231B283F1ED2978000190DA4 /* LaunchScreen.storyboard in Resources */,
+				231B283C1ED2978000190DA4 /* Assets.xcassets in Resources */,
+				231B283A1ED2978000190DA4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		016CCEB48BB8ECE24A5419C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		61089B61CC8380556FF9CCE4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EED1622BAB09848AEC3B3CFD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		231B28281ED2978000190DA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				231B28341ED2978000190DA4 /* AppDelegate.m in Sources */,
+				231B284E1ED2BBDF00190DA4 /* BasicViewController.m in Sources */,
+				231B28311ED2978000190DA4 /* main.m in Sources */,
+				231B28511ED2BBFD00190DA4 /* SliderContentViewController.m in Sources */,
+				231B28571ED3D62300190DA4 /* YJSliderView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		231B28381ED2978000190DA4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				231B28391ED2978000190DA4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		231B283D1ED2978000190DA4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				231B283E1ED2978000190DA4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		231B28411ED2978000190DA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		231B28421ED2978000190DA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		231B28441ED2978000190DA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED4F11EE366DE2B2F45A94D8 /* Pods-YJSliderView.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YJSliderView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jake.YJSliderView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		231B28451ED2978000190DA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E62B39F247D82D23ABE3D57A /* Pods-YJSliderView.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = YJSliderView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jake.YJSliderView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		231B28271ED2978000190DA4 /* Build configuration list for PBXProject "YJSliderView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				231B28411ED2978000190DA4 /* Debug */,
+				231B28421ED2978000190DA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		231B28431ED2978000190DA4 /* Build configuration list for PBXNativeTarget "YJSliderView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				231B28441ED2978000190DA4 /* Debug */,
+				231B28451ED2978000190DA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 231B28241ED2978000190DA4 /* Project object */;
+}
