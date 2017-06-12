@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1633042DE2E790C0DC68B3E5 /* libPods-YJSliderView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 512AA5DEBA31D231E75AFA16 /* libPods-YJSliderView.a */; };
 		231B28311ED2978000190DA4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28301ED2978000190DA4 /* main.m */; };
 		231B28341ED2978000190DA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28331ED2978000190DA4 /* AppDelegate.m */; };
 		231B283A1ED2978000190DA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 231B28381ED2978000190DA4 /* Main.storyboard */; };
@@ -33,9 +32,6 @@
 		231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderContentViewController.m; sourceTree = "<group>"; };
 		231B28551ED3D62300190DA4 /* YJSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJSliderView.h; sourceTree = "<group>"; };
 		231B28561ED3D62300190DA4 /* YJSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJSliderView.m; sourceTree = "<group>"; };
-		512AA5DEBA31D231E75AFA16 /* libPods-YJSliderView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YJSliderView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E62B39F247D82D23ABE3D57A /* Pods-YJSliderView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJSliderView.release.xcconfig"; path = "Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView.release.xcconfig"; sourceTree = "<group>"; };
-		ED4F11EE366DE2B2F45A94D8 /* Pods-YJSliderView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YJSliderView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1633042DE2E790C0DC68B3E5 /* libPods-YJSliderView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +50,6 @@
 			children = (
 				231B282E1ED2978000190DA4 /* YJSliderView */,
 				231B282D1ED2978000190DA4 /* Products */,
-				8CF8FA191B576370EAEB78CF /* Pods */,
-				FB1AF416501A4C9B2049A60E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,23 +95,6 @@
 				231B28561ED3D62300190DA4 /* YJSliderView.m */,
 			);
 			path = YJSliderView;
-			sourceTree = "<group>";
-		};
-		8CF8FA191B576370EAEB78CF /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				ED4F11EE366DE2B2F45A94D8 /* Pods-YJSliderView.debug.xcconfig */,
-				E62B39F247D82D23ABE3D57A /* Pods-YJSliderView.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FB1AF416501A4C9B2049A60E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				512AA5DEBA31D231E75AFA16 /* libPods-YJSliderView.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,7 +179,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 		61089B61CC8380556FF9CCE4 /* [CP] Embed Pods Frameworks */ = {
@@ -218,7 +194,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView-frameworks.sh\"\n";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 		EED1622BAB09848AEC3B3CFD /* [CP] Copy Pods Resources */ = {
@@ -233,7 +209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YJSliderView/Pods-YJSliderView-resources.sh\"\n";
+			shellScript = "";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -367,7 +343,6 @@
 		};
 		231B28441ED2978000190DA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED4F11EE366DE2B2F45A94D8 /* Pods-YJSliderView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YJSliderView/Info.plist;
@@ -379,7 +354,6 @@
 		};
 		231B28451ED2978000190DA4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E62B39F247D82D23ABE3D57A /* Pods-YJSliderView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YJSliderView/Info.plist;
