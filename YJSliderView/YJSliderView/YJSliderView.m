@@ -8,7 +8,6 @@
 
 #import "YJSliderView.h"
 #import "Masonry.h"
-#import "MJRefresh.h"
 
 static const CGFloat topViewHeight = 42;
 static CGFloat scaleSize = 1.3;
@@ -21,27 +20,27 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 /*============== SliderTitleCell ===================*/
 
 @interface YJSliderTitleCell : UICollectionViewCell
-@property (nonatomic , strong) UIButton *titleButton;
-@property (nonatomic, copy) void (^onTapBtn)();
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIColor *themeColor;
 
-- (void)initCellStyleWithButton:(UIButton *)btn Status:(BOOL)isSelected TapCompletetionHandle:(void(^)())completeHandle;
+- (void)initCellStyleWithLabel:(UILabel *)label Status:(BOOL)isSelected;
+
 @end
 
 @implementation YJSliderTitleCell
 
-- (void)initCellStyleWithButton:(UIButton *)btn Status:(BOOL)isSelected TapCompletetionHandle:(void(^)())completeHandle {
+- (void)initCellStyleWithLabel:(UILabel *)label Status:(BOOL)isSelected {
     while (self.subviews.count) {
         [self.subviews.lastObject removeFromSuperview];
     }
-    self.titleButton = btn;
-    [self.titleButton addTarget:self action:@selector(tapBtn:) forControlEvents:UIControlEventTouchUpInside];
-    self.titleButton.selected = isSelected;
-    self.titleButton.enabled = !isSelected;
-    [self addSubview:self.titleButton];
-    [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.titleLabel = label;
+    self.titleLabel.text = label.text;
+    self.titleLabel.font = label.font;
+    self.titleLabel.textColor = isSelected ?  self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00] : [UIColor lightGrayColor];
+    [self addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    self.onTapBtn = completeHandle;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -52,11 +51,18 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     return self;
 }
 
-- (void)tapBtn:(UIButton *)sender {
-    if (self.onTapBtn) {
-        self.onTapBtn();
-    }
-}
+//- (UILabel *)titleLabel {
+//    if (!_titleLabel) {
+//        _titleLabel = [[UILabel alloc] init];
+//        _titleLabel.textAlignment = NSTextAlignmentCenter;
+//        _titleLabel.textColor = [UIColor lightGrayColor];
+//        [self addSubview:_titleLabel];
+//        [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.mas_equalTo(0);
+//        }];
+//    }
+//    return _titleLabel;
+//}
 
 @end
 
@@ -69,7 +75,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 @property (nonatomic, strong) UICollectionView *contentCollectionView;
 @property (nonatomic, strong) NSMutableDictionary *statusDic;
 @property (nonatomic, strong) UIView *sliderLine;
-@property (nonatomic, strong) NSMutableArray *buttonArray;
+@property (nonatomic, strong) NSMutableArray *labelArray;
 @end
 
 @implementation YJSliderView
@@ -86,7 +92,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 - (void)reloadData {
     [self.contentCollectionView reloadData];
     [self.titleCollectionView reloadData];
-    [self setUpButton];
+    [self setUpLabels];
 }
 
 - (void)layoutSubviews {
@@ -94,19 +100,19 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     [self.contentCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"YJSliderContentCell"];
     [self.titleCollectionView registerClass:[YJSliderTitleCell class] forCellWithReuseIdentifier:@"YJSliderTitleCell"];
     NSAssert(scaleSize >= 1, @"YJSliderView -- Title放大倍数需要不小于1");
-    [self setUpButton];
+    [self setUpLabels];
 }
 
-- (void)setUpButton {
-    self.buttonArray = [NSMutableArray new];
-    for (NSInteger index = 0; index < [self.delegate numberOfItemsInYJSliderView:self]; index ++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.titleLabel.font = [UIFont systemFontOfSize:self.fontSize ? self.fontSize : 15.0];
-        [btn setTitle:[self.delegate yj_SliderView:self titleForItemAtIndex:index] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [btn setTitleColor:self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00] forState:UIControlStateSelected | UIControlStateDisabled];
-        [self.buttonArray addObject:btn];
 
+- (void)setUpLabels {
+    self.labelArray = [NSMutableArray new];
+    for (NSInteger index = 0; index < [self.delegate numberOfItemsInYJSliderView:self]; index ++) {
+        UILabel *label = [[UILabel alloc] init];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.font = [UIFont systemFontOfSize:self.fontSize ? self.fontSize : 15.0];
+        label.text = [self.delegate yj_SliderView:self titleForItemAtIndex:index];
+        label.textColor = self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00];
+        [self.labelArray addObject:label];
     }
 }
 
@@ -144,14 +150,9 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     switch (type) {
         case TITLE: {
             YJSliderTitleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:indexPath];
+            cell.themeColor = self.themeColor;
             BOOL isSelected = [[self.statusDic objectForKey:[NSNumber numberWithInteger:indexPath.row]] boolValue];
-            __weak typeof(self)weakSelf = self;
-            [cell initCellStyleWithButton:self.buttonArray[indexPath.item] Status:isSelected TapCompletetionHandle:^{
-                [weakSelf manageButtonStatus:indexPath.item];
-                [weakSelf.contentCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
-                [weakSelf.titleCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-                [weakSelf.titleCollectionView reloadData];
-            }];
+            [cell initCellStyleWithLabel:self.labelArray[indexPath.item] Status:isSelected];
             return cell;
         }
         case CONTENT: {
@@ -166,6 +167,16 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
             }];
             return cell;
         }
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    CollectionViewType type = collectionView.tag;
+    if (type == TITLE) {
+        [self manageButtonStatus:indexPath.item];
+        [self.contentCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        [self.titleCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        [self.titleCollectionView reloadData];
     }
 }
 
@@ -194,27 +205,27 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         NSInteger index = (NSInteger)indexValue;
         CGFloat lagerScale = scaleSize - (indexValue - index) * (scaleSize - 1);
         CGFloat smallScale = (indexValue - index) * (scaleSize - 1)  + 1;
-        UIButton *currentBtn;
-        UIButton *nextBtn;
+        UILabel *currentLabel;
+        UILabel *nextLabel;
         if (index < self.currentIndex) {
-            currentBtn = self.buttonArray[index + 1];
-            nextBtn = self.buttonArray[index];
-            currentBtn.transform = CGAffineTransformMakeScale(smallScale, smallScale);
-            nextBtn.transform = CGAffineTransformMakeScale(lagerScale, lagerScale);
-            [self changeButtonColor:currentBtn To:[UIColor lightGrayColor] WithScale:(1 - (indexValue - index))];
-            [self changeButtonColor:nextBtn To:self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00] WithScale:(1 - (indexValue - index))];
+            currentLabel = self.labelArray[index + 1];
+            nextLabel = self.labelArray[index];
+            currentLabel.transform = CGAffineTransformMakeScale(smallScale, smallScale);
+            nextLabel.transform = CGAffineTransformMakeScale(lagerScale, lagerScale);
+            [self changeLabelColor:currentLabel To:[UIColor lightGrayColor] WithScale:(1 - (indexValue - index))];
+            [self changeLabelColor:nextLabel To:self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00] WithScale:(1 - (indexValue - index))];
             
         } else {
-            currentBtn = self.buttonArray[index];
-            currentBtn.transform = CGAffineTransformMakeScale(lagerScale, lagerScale);
-            if (index + 1 == self.buttonArray.count) {
-                nextBtn = nil;
+            currentLabel = self.labelArray[index];
+            currentLabel.transform = CGAffineTransformMakeScale(lagerScale, lagerScale);
+            if (index + 1 == self.labelArray.count) {
+                nextLabel = nil;
             } else {
-                nextBtn = self.buttonArray[index + 1];
-                nextBtn.transform = CGAffineTransformMakeScale(smallScale, smallScale);
+                nextLabel = self.labelArray[index + 1];
+                nextLabel.transform = CGAffineTransformMakeScale(smallScale, smallScale);
             }
-            [self changeButtonColor:currentBtn To:[UIColor lightGrayColor] WithScale:(indexValue - index)];
-            [self changeButtonColor:nextBtn To:self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00] WithScale:(indexValue - index)];
+            [self changeLabelColor:currentLabel To:[UIColor lightGrayColor] WithScale:(indexValue - index)];
+            [self changeLabelColor:nextLabel To:self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00] WithScale:(indexValue - index)];
         }
     }
 }
@@ -224,20 +235,20 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 /**
  *  线性改变按钮颜色
  *
- *  @param button  改色按钮
+ *  @param label  改色label
  *  @param toColor 改变后的颜色
  *  @param scale   改色进度
  */
-- (void)changeButtonColor:(UIButton *)button To:(UIColor *)toColor WithScale:(CGFloat)scale {
+- (void)changeLabelColor:(UILabel *)label To:(UIColor *)toColor WithScale:(CGFloat)scale {
     CGFloat originRed, originGreen, originBlue;
-    [button.currentTitleColor getRed:&originRed green:&originGreen blue:&originBlue alpha:nil];
+    [label.textColor getRed:&originRed green:&originGreen blue:&originBlue alpha:nil];
     CGFloat targetRed, targetGreen, targetBlue;
     [toColor getRed:&targetRed green:&targetGreen blue:&targetBlue alpha:nil];
     CGFloat currentRed, currentGreen, currentBlue;
     currentRed = originRed + (targetRed - originRed) * scale;
     currentGreen = originGreen + (targetGreen - originGreen) * scale;
     currentBlue = originBlue + (targetBlue - originBlue) * scale;
-    button.titleLabel.textColor = [UIColor colorWithRed:currentRed green:currentGreen blue:currentBlue alpha:1];
+    label.textColor = [UIColor colorWithRed:currentRed green:currentGreen blue:currentBlue alpha:1];
 }
 
 #pragma mark - Collection Init
@@ -319,8 +330,8 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
                 [_statusDic setObject:[NSNumber numberWithBool:YES] forKey:[NSNumber numberWithInt:num]];
                 [self.contentCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:num inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                 [self updateSliderLinePosition:num];
-                UIButton *btn = self.buttonArray[num];
-                btn.transform = CGAffineTransformMakeScale(scaleSize, scaleSize);
+                UILabel *label = self.labelArray[num];
+                label.transform = CGAffineTransformMakeScale(scaleSize, scaleSize);
             }
         }
     }
