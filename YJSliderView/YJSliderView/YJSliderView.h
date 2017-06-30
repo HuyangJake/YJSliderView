@@ -29,13 +29,6 @@
  */
 - (NSInteger)initialzeIndexFoYJSliderView:(YJSliderView *)sliderView;
 
-/**
- SliderView中的某个子View下拉触发刷新（用于处理内部数据来自于外部统一接口的情况）
-
- @param sliderView sliderView
- @param index 触发刷新的位置
- */
-- (void)yj_SliderView:(YJSliderView *)sliderView didPullToRefreshAtIndex:(NSInteger)index;
 
 @end
 

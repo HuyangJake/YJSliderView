@@ -25,6 +25,7 @@
 		231B284E1ED2BBDF00190DA4 /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B284D1ED2BBDF00190DA4 /* BasicViewController.m */; };
 		231B28511ED2BBFD00190DA4 /* SliderContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */; };
 		231B28571ED3D62300190DA4 /* YJSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28561ED3D62300190DA4 /* YJSliderView.m */; };
+		A29A5B0A1F06835900D9E538 /* IBBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A29A5B091F06835900D9E538 /* IBBasicViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderContentViewController.m; sourceTree = "<group>"; };
 		231B28551ED3D62300190DA4 /* YJSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJSliderView.h; sourceTree = "<group>"; };
 		231B28561ED3D62300190DA4 /* YJSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJSliderView.m; sourceTree = "<group>"; };
+		A29A5B081F06835900D9E538 /* IBBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBBasicViewController.h; sourceTree = "<group>"; };
+		A29A5B091F06835900D9E538 /* IBBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBBasicViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				231B284D1ED2BBDF00190DA4 /* BasicViewController.m */,
 				231B284F1ED2BBFD00190DA4 /* SliderContentViewController.h */,
 				231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */,
+				A29A5B081F06835900D9E538 /* IBBasicViewController.h */,
+				A29A5B091F06835900D9E538 /* IBBasicViewController.m */,
 				231B28381ED2978000190DA4 /* Main.storyboard */,
 				231B283B1ED2978000190DA4 /* Assets.xcassets */,
 				231B283D1ED2978000190DA4 /* LaunchScreen.storyboard */,
@@ -301,6 +306,7 @@
 				2317DF3F1EEE8B49001179D4 /* ViewController+MASAdditions.m in Sources */,
 				2317DF371EEE8B49001179D4 /* MASConstraint.m in Sources */,
 				2317DF391EEE8B49001179D4 /* MASLayoutConstraint.m in Sources */,
+				A29A5B0A1F06835900D9E538 /* IBBasicViewController.m in Sources */,
 				231B28571ED3D62300190DA4 /* YJSliderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YJSliderView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jake.YJSliderView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -435,6 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = YJSliderView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jake.YJSliderView;
 				PRODUCT_NAME = "$(TARGET_NAME)";

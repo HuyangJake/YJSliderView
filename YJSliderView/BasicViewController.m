@@ -20,12 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //需要将UIView的自动调整ScrollViewInset关闭
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.sliderView = [[YJSliderView alloc] initWithFrame:self.view.frame];
+    self.sliderView = [[YJSliderView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height)];
     self.sliderView.delegate = self;
     self.titleArray = @[@"灰色", @"黄色黄色", @"紫", @"橘色", @"蓝色"];
     [self.view addSubview:self.sliderView];
-//    [self.sliderView reloadData];
 }
 
 - (NSInteger)numberOfItemsInYJSliderView:(YJSliderView *)sliderView {
