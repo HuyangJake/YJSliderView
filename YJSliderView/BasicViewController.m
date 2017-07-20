@@ -22,14 +22,15 @@
     [super viewDidLoad];
     //需要将UIView的自动调整ScrollViewInset关闭
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.title = @"Slider";
     self.sliderView = [[YJSliderView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height)];
     self.sliderView.delegate = self;
-    self.titleArray = @[@"灰色", @"黄色黄色", @"紫", @"橘色", @"蓝色"];
+    self.titleArray = @[@"灰色", @"黄色黄色黄色黄色黄色黄色", @"紫", @"橘色", @"蓝色"];
     [self.view addSubview:self.sliderView];
 }
 
 - (NSInteger)numberOfItemsInYJSliderView:(YJSliderView *)sliderView {
-    return 2;
+    return 4;
 }
 
 - (UIView *)yj_SliderView:(YJSliderView *)sliderView viewForItemAtIndex:(NSInteger)index {
@@ -51,7 +52,7 @@
 }
 
 - (NSInteger)initialzeIndexFoYJSliderView:(YJSliderView *)sliderView {
-    return 1;
+    return 3;
 }
 
 @end
