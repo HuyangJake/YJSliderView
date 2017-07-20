@@ -120,7 +120,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 }
 
 - (void)updateSliderLinePosition:(CGFloat)index {
-    YJSliderTitleCell *cell = (YJSliderTitleCell *)[self collectionView:self.titleCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+    YJSliderTitleCell *cell = [self.titleCollectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
     CGRect cellFrame = [self.titleCollectionView convertRect:cell.frame toView:self.titleCollectionView];
     CGFloat labelWidth = [self yj_calculateItemWithAtIndex:index];
     
@@ -355,6 +355,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
                 self.currentIndex = num;
                 [_statusDic setObject:[NSNumber numberWithBool:YES] forKey:[NSNumber numberWithInt:num]];
                 [self.contentCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:num inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+                [self.titleCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:num inSection:0] atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
                 [self updateSliderLinePosition:num];
                 UIButton *btn = self.buttonArray[num];
                 btn.transform = CGAffineTransformMakeScale(scaleSize, scaleSize);
