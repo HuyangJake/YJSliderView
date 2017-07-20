@@ -116,7 +116,6 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     CGFloat preStartPointX = preCellFrame.origin.x + (preCellFrame.size.width - preLabelWidth) / 2;
     
     CGFloat rate = fabs(index - preIndex);
-    NSLog(@"index %.2f - preIndex %.2f , rate %.2f", index, preIndex, rate);
     [self.sliderLine mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(preLabelWidth + (labelWidth - preLabelWidth) * rate);
         make.left.mas_equalTo(preStartPointX + (startPointX - preStartPointX) * rate);
