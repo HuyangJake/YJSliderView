@@ -29,7 +29,7 @@
 }
 
 - (NSInteger)numberOfItemsInYJSliderView:(YJSliderView *)sliderView {
-    return 4;
+    return 2;
 }
 
 - (UIView *)yj_SliderView:(YJSliderView *)sliderView viewForItemAtIndex:(NSInteger)index {
@@ -51,7 +51,7 @@
 }
 
 - (NSInteger)initialzeIndexFoYJSliderView:(YJSliderView *)sliderView {
-    return 3;
+    return 1;
 }
 
 @end
