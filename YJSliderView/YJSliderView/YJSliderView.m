@@ -58,6 +58,8 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 @property (nonatomic, strong) NSMutableDictionary *statusDic;   //位置选择状态
 @property (nonatomic, strong) UIView *sliderLine;   //title底部滚动条
 @property (nonatomic, strong) NSMutableArray *buttonArray; //标题数组
+
+@property (nonatomic, strong) NSMutableDictionary *titleWidthCache;//标题文字宽度缓存
 @end
 
 @implementation YJSliderView
@@ -66,6 +68,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     [self.contentCollectionView reloadData];
     [self.titleCollectionView reloadData];
     [self setUpButtons];
+    [self.titleWidthCache removeAllObjects];
 }
 
 - (void)layoutSubviews {
@@ -78,6 +81,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 
 - (void)setUpButtons {
     self.buttonArray = [NSMutableArray new];
+    self.titleWidthCache = [NSMutableDictionary new];
     for (NSInteger index = 0; index < [self.delegate numberOfItemsInYJSliderView:self]; index ++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize ? self.fontSize : 15.0]];
@@ -112,7 +116,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     CGFloat preStartPointX = preCellFrame.origin.x + (preCellFrame.size.width - preLabelWidth) / 2;
     
     CGFloat rate = fabs(index - preIndex);
-    
+    NSLog(@"index %.2f - preIndex %.2f , rate %.2f", index, preIndex, rate);
     [self.sliderLine mas_updateConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(preLabelWidth + (labelWidth - preLabelWidth) * rate);
         make.left.mas_equalTo(preStartPointX + (startPointX - preStartPointX) * rate);
@@ -197,10 +201,16 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 }
 
 - (CGFloat)yj_calculateItemWithAtIndex:(NSInteger)index {
-    NSString *title = [self.delegate yj_SliderView:self titleForItemAtIndex:index];
-    NSDictionary *attrs = @{NSFontAttributeName: [UIFont systemFontOfSize:self.fontSize ? self.fontSize : 15.0]};
-    CGFloat itemWidth = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:attrs context:nil].size.width;
-    return ceil(itemWidth);
+    NSNumber *width = [self.titleWidthCache objectForKey:[NSString stringWithFormat:@"%ld", index]];
+    if (width) {
+        return [width doubleValue];
+    } else {
+        NSString *title = [self.delegate yj_SliderView:self titleForItemAtIndex:index];
+        NSDictionary *attrs = @{NSFontAttributeName: [UIFont systemFontOfSize:self.fontSize ? self.fontSize : 15.0]};
+        CGFloat itemWidth = [title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:attrs context:nil].size.width;
+        [self.titleWidthCache setObject:@(itemWidth) forKey:[NSString stringWithFormat:@"%ld", index]];
+        return ceil(itemWidth);
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -224,8 +234,14 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.tag == CONTENT) {
         CGFloat indexValue = (CGFloat)(scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width);
-        [self updateSliderLinePosition:indexValue fromIndex:self.currentIndex];
-        [self updateLabelInCellAtIndex:self.currentIndex nextIndex:indexValue];
+        CGFloat currentIndexValue = 0.00;
+        if (indexValue > self.currentIndex) {
+           currentIndexValue = floor(indexValue);
+        } else {
+            currentIndexValue = ceil(indexValue);
+        }
+        [self updateSliderLinePosition:indexValue fromIndex:currentIndexValue];
+        [self updateLabelInCellAtIndex:currentIndexValue nextIndex:indexValue];
     }
 }
 
@@ -294,6 +310,10 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         _titleCollectionView.dataSource = self;
         _titleCollectionView.backgroundColor = [UIColor whiteColor];
         [self addSubview:_titleCollectionView];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_titleCollectionView.frame), CGRectGetWidth(self.frame), 0.5)];
+        lineView.backgroundColor = [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.00];
+        [self addSubview:lineView];
+        
     }
     
     UICollectionViewFlowLayout *topLayout = (UICollectionViewFlowLayout *)_titleCollectionView.collectionViewLayout;
@@ -314,7 +334,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _contentCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.titleCollectionView.frame.size.height, self.frame.size.width, self.frame.size.height - topViewHeight) collectionViewLayout:layout];
+        _contentCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.titleCollectionView.frame.size.height+0.5, self.frame.size.width, self.frame.size.height - topViewHeight) collectionViewLayout:layout];
         _contentCollectionView.tag = CONTENT;
         _contentCollectionView.bounces = NO;
         _contentCollectionView.showsHorizontalScrollIndicator = NO;
