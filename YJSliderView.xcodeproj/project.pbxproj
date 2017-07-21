@@ -25,6 +25,7 @@
 		231B284E1ED2BBDF00190DA4 /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B284D1ED2BBDF00190DA4 /* BasicViewController.m */; };
 		231B28511ED2BBFD00190DA4 /* SliderContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */; };
 		231B28571ED3D62300190DA4 /* YJSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 231B28561ED3D62300190DA4 /* YJSliderView.m */; };
+		232120951F22018800C8D4B1 /* DotCountLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 232120941F22018800C8D4B1 /* DotCountLabel.m */; };
 		A29A5B0A1F06835900D9E538 /* IBBasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A29A5B091F06835900D9E538 /* IBBasicViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,8 @@
 		231B28501ED2BBFD00190DA4 /* SliderContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderContentViewController.m; sourceTree = "<group>"; };
 		231B28551ED3D62300190DA4 /* YJSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJSliderView.h; sourceTree = "<group>"; };
 		231B28561ED3D62300190DA4 /* YJSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJSliderView.m; sourceTree = "<group>"; };
+		232120931F22018800C8D4B1 /* DotCountLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotCountLabel.h; sourceTree = "<group>"; };
+		232120941F22018800C8D4B1 /* DotCountLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotCountLabel.m; sourceTree = "<group>"; };
 		A29A5B081F06835900D9E538 /* IBBasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBBasicViewController.h; sourceTree = "<group>"; };
 		A29A5B091F06835900D9E538 /* IBBasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBBasicViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +167,8 @@
 		231B28541ED3D62300190DA4 /* YJSliderView */ = {
 			isa = PBXGroup;
 			children = (
+				232120931F22018800C8D4B1 /* DotCountLabel.h */,
+				232120941F22018800C8D4B1 /* DotCountLabel.m */,
 				231B28551ED3D62300190DA4 /* YJSliderView.h */,
 				231B28561ED3D62300190DA4 /* YJSliderView.m */,
 			);
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2317DF3D1EEE8B49001179D4 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				232120951F22018800C8D4B1 /* DotCountLabel.m in Sources */,
 				231B28341ED2978000190DA4 /* AppDelegate.m in Sources */,
 				2317DF3B1EEE8B49001179D4 /* MASViewConstraint.m in Sources */,
 				231B284E1ED2BBDF00190DA4 /* BasicViewController.m in Sources */,

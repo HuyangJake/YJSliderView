@@ -8,9 +8,10 @@
 
 #import "YJSliderView.h"
 #import "Masonry.h"
+#import "DotCountLabel.h"
 
-static const CGFloat topViewHeight = 42;
-static CGFloat scaleSize = 1.1;
+static const CGFloat topViewHeight = 50;
+static CGFloat scaleSize = 1.0;
 
 typedef NS_ENUM(NSUInteger, CollectionViewType) {
     TITLE,
@@ -23,26 +24,31 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 @property (nonatomic, strong) UIButton *titleButton;
 @property (nonatomic, strong) UIColor *themeColor;
 
-- (void)bindStyleLabel:(UILabel *)label status:(BOOL)isSelected;
+- (void)bindStyleButton:(UIButton *)btn redNum:(NSInteger)redNum status:(BOOL)isSelected;
 
 @end
 
 @implementation YJSliderTitleCell
 
-- (void)bindStyleLabel:(UIButton *)btn status:(BOOL)isSelected {
+- (void)bindStyleButton:(UIButton *)btn redNum:(NSInteger)redNum status:(BOOL)isSelected {
     for (UIView *view in self.subviews) {
-        if ([view isKindOfClass:[UIButton class]]) {
-            [view removeFromSuperview];
-        }
+        [view removeFromSuperview];
     }
     self.titleButton = btn;
     self.titleButton.userInteractionEnabled = NO;
     [self.titleButton setTitle:btn.titleLabel.text forState:UIControlStateNormal];
     [self.titleButton setTitleColor:isSelected ?  self.themeColor ? self.themeColor : [UIColor colorWithRed:0.15 green:0.71 blue:0.96 alpha:1.00] : [UIColor lightGrayColor] forState:UIControlStateNormal];
     [self addSubview:self.titleButton];
+    DotCountLabel *label = [[DotCountLabel alloc] initWithFrame:CGRectMake(0, 0, 15, 15) fontWight:12];
+    [self addSubview:label];
     [self.titleButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(8);
+    }];
+    label.countNum = redNum;
 }
 
 @end
@@ -150,7 +156,12 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
             YJSliderTitleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:indexPath];
             cell.themeColor = self.themeColor;
             BOOL isSelected = [[self.statusDic objectForKey:[NSNumber numberWithInteger:indexPath.row]] boolValue];
-            [cell bindStyleLabel:self.buttonArray[indexPath.item] status:isSelected];
+            if ([self.delegate respondsToSelector:@selector(yj_SliderView:redDotNumForItemAtIndex:)]) {
+                [cell bindStyleButton:self.buttonArray[indexPath.item] redNum:[self.delegate yj_SliderView:self redDotNumForItemAtIndex:indexPath.row] status:isSelected];
+            } else {
+                [cell bindStyleButton:self.buttonArray[indexPath.item] redNum:0 status:isSelected];
+            }
+            
             return cell;
         }
         case CONTENT: {
@@ -189,7 +200,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         } else {
             width = self.frame.size.width / 4;
         }
-        CGFloat calcWidth = [self yj_calculateItemWithAtIndex:indexPath.row] + 20;//加上左右各10的边距
+        CGFloat calcWidth = [self yj_calculateItemWithAtIndex:indexPath.row] + 30;//加上左右各10的边距
         if (calcWidth > width) {
             width = calcWidth;
         }
@@ -367,8 +378,8 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
             [_statusDic setObject:[NSNumber numberWithBool:NO] forKey:[NSNumber numberWithInt:num]];
             //带指定页面的初始化
             NSInteger initializeIndex = 0;
-            if ([self.delegate respondsToSelector:@selector(initialzeIndexFoYJSliderView:)]) {
-                initializeIndex = [self.delegate initialzeIndexFoYJSliderView:self];
+            if ([self.delegate respondsToSelector:@selector(initialzeIndexForYJSliderView:)]) {
+                initializeIndex = [self.delegate initialzeIndexForYJSliderView:self];
             }
             if (num == initializeIndex) {
                 self.currentIndex = num;

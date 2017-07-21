@@ -51,8 +51,12 @@
     return self.titleArray[index];
 }
 
-- (NSInteger)initialzeIndexFoYJSliderView:(YJSliderView *)sliderView {
+- (NSInteger)initialzeIndexForYJSliderView:(YJSliderView *)sliderView {
     return 3;
+}
+
+- (NSInteger)yj_SliderView:(YJSliderView *)sliderView redDotNumForItemAtIndex:(NSInteger)index {
+    return 1;
 }
 
 @end

@@ -27,8 +27,17 @@
  @param sliderView 当前sliderView
  @return 初始化显示的位置
  */
-- (NSInteger)initialzeIndexFoYJSliderView:(YJSliderView *)sliderView;
+- (NSInteger)initialzeIndexForYJSliderView:(YJSliderView *)sliderView;
 
+
+/**
+ 标题的红点显示的数量
+
+ @param sliderView 当前SliderView
+ @param index 位置
+ @return 红点显示数量
+ */
+- (NSInteger)yj_SliderView:(YJSliderView *)sliderView redDotNumForItemAtIndex:(NSInteger)index;
 
 @end
 
