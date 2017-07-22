@@ -12,7 +12,7 @@
 
 @interface BasicViewController ()<YJSliderViewDelegate>
 @property (nonatomic, strong) YJSliderView *sliderView;
-@property (nonatomic, strong) NSArray *contentArray;
+@property (nonatomic, strong) NSMutableArray *contentArray;
 @property (nonatomic, strong) NSArray *titleArray;
 @end
 
@@ -27,6 +27,11 @@
     self.sliderView.delegate = self;
     self.titleArray = @[@"灰色", @"黄色黄色黄色黄色黄色黄色", @"紫", @"橘色", @"蓝色"];
     [self.view addSubview:self.sliderView];
+    self.contentArray = [NSMutableArray new];
+    for (NSInteger index = 0; index < 5; index ++) {
+        SliderContentViewController *vc = [[SliderContentViewController alloc] init];
+        [self.contentArray addObject:vc];
+    }
 }
 
 - (NSInteger)numberOfItemsInYJSliderView:(YJSliderView *)sliderView {
@@ -34,7 +39,8 @@
 }
 
 - (UIView *)yj_SliderView:(YJSliderView *)sliderView viewForItemAtIndex:(NSInteger)index {
-    SliderContentViewController *vc = [[SliderContentViewController alloc] init];
+    //因为没有写重用的逻辑，建议在控制器中定义view的数组，在此处取出展示(注意在此处定义控制器传入它的view，view中的子视图最好使用约束进行布局)
+    SliderContentViewController *vc = self.contentArray[index];
     if (index == 0) {
         vc.view.backgroundColor = [UIColor lightGrayColor];
     } else if (index == 1) {
@@ -56,7 +62,7 @@
 }
 
 - (NSInteger)yj_SliderView:(YJSliderView *)sliderView redDotNumForItemAtIndex:(NSInteger)index {
-    return 1;
+    return 0;
 }
 
 @end

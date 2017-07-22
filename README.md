@@ -9,6 +9,7 @@
  	* SliderBar
  	* UICollectionViewCell
  		* UIButton 
+ 		* DotCountLabel
  * `content` `UICollectionView`
  	* UICollectionViewCell
  		* UIView (属于外部控制器)
@@ -25,7 +26,7 @@
 
 ## 使用方法（就像使用UITableView）
 
-1. 将`YJSliderView`的头文件和实现文件拷贝进自己的项目。
+1. 将`YJSliderView` 和`DotCountLabel`的头文件和实现文件拷贝进自己的项目。
 2. 在控制器中创建 YJSliderView的实例， 可以通过StoryBoard或者Frame。
 
 
@@ -48,7 +49,23 @@
 
 @optional
 
-- (NSInteger)initialzeIndexFoYJSliderView:(YJSliderView *)sliderView;
+/**
+ 初始化的位置
+ 
+ @param sliderView 当前sliderView
+ @return 初始化显示的位置
+ */
+- (NSInteger)initialzeIndexForYJSliderView:(YJSliderView *)sliderView;
+
+
+/**
+ 标题的红点显示的数量
+
+ @param sliderView 当前SliderView
+ @param index 位置
+ @return 红点显示数量
+ */
+- (NSInteger)yj_SliderView:(YJSliderView *)sliderView redDotNumForItemAtIndex:(NSInteger)index;
 
 
 @end
@@ -56,9 +73,15 @@
 * 	具体的代码和注意点详见Demo代码~
 
 
+### 不足点（欢迎PR）
+* 暂时对横屏支持有问题
+* MRC不支持
+* 红点的位置需要手动调节
+
 ## 更新日志
 * 2017.05.23 首次提交
 * 2017.06.30 添加IB的展示
 * 2017.07.20 更新滚动条和标题样式
 	* title的宽度可根据内容来自动调整
 	* 头部的滚动指示条的长度根据标题内容自动调整 
+* 2017.07.21 添加标题栏未读红点
