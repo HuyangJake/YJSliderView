@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="huK-3d-BXP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="huK-3d-BXP">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,7 +33,7 @@
             </objects>
             <point key="canvasLocation" x="655" y="202"/>
         </scene>
-        <!--Basic View Controller-->
+        <!--Created by StoryBoard -->
         <scene sceneID="CGI-BT-DQi">
             <objects>
                 <viewController id="cC4-4u-0ZW" customClass="IBBasicViewController" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gf7-cq-Bha" customClass="YJSliderView">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -58,6 +58,15 @@
                             <constraint firstItem="ZyD-Oa-m3G" firstAttribute="top" secondItem="Gf7-cq-Bha" secondAttribute="bottom" id="mgp-CZ-89R"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Created by StoryBoard " id="0OF-yy-Yot">
+                        <barButtonItem key="rightBarButtonItem" title="Scroll" id="Mx2-DE-5dt">
+                            <connections>
+                                <action selector="tapScrollBtn:" destination="cC4-4u-0ZW" id="ND4-rw-hOq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="sliderView" destination="Gf7-cq-Bha" id="l4N-Gy-2cZ"/>
                     </connections>

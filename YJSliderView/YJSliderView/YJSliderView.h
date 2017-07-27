@@ -55,4 +55,6 @@
 
 - (void)reloadData;
 
+- (void)scrollToIndex:(NSInteger)index animated:(BOOL)animated;
+
 @end

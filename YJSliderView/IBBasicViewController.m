@@ -24,11 +24,17 @@
     view.backgroundColor = [UIColor lightGrayColor];
     UIView *view2 = [[UIView alloc] initWithFrame:self.view.frame];
     view2.backgroundColor = [UIColor yellowColor];
-    self.viewsArray = @[view, view2];
+    UIView *view3 = [[UIView alloc] initWithFrame:self.view.frame];
+    view3.backgroundColor = [UIColor yellowColor];
+    self.viewsArray = @[view, view2, view3];
+}
+
+- (IBAction)tapScrollBtn:(UIBarButtonItem *)sender {
+    [self.sliderView scrollToIndex:2 animated:YES];
 }
 
 - (NSInteger)numberOfItemsInYJSliderView:(YJSliderView *)sliderView {
-    return 2;
+    return 3;
 }
 
 - (UIView *)yj_SliderView:(YJSliderView *)sliderView viewForItemAtIndex:(NSInteger)index {
@@ -37,7 +43,7 @@
 }
 
 - (NSString *)yj_SliderView:(YJSliderView *)sliderView titleForItemAtIndex:(NSInteger)index {
-    return index? @"First" : @"Second";
+    return index? @"First" : @"Other";
 }
 
 /*

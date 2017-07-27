@@ -119,47 +119,6 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     }
 }
 
-/**
- *  更新下划线位置
- *
- *  @param index 当前位置
- */
-- (void)updateSliderLinePosition:(CGFloat)index fromIndex:(CGFloat)preIndex{
-    NSIndexPath *indexPath;
-    if (index == preIndex) {return;}
-    if (index > preIndex) {
-        indexPath = [NSIndexPath indexPathForItem:preIndex + 1 inSection:0];
-    } else if (index < preIndex){
-        indexPath = [NSIndexPath indexPathForItem:preIndex - 1 inSection:0];
-    }
-
-    YJSliderTitleCell *cell = [self.titleCollectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:indexPath];
-    CGRect cellFrame = [self.titleCollectionView convertRect:cell.frame toView:self.titleCollectionView];
-    CGFloat labelWidth = [self yj_calculateItemWithAtIndex:indexPath.row];
-    CGFloat startPointX = cellFrame.origin.x + (cellFrame.size.width - labelWidth) / 2;
-    
-    YJSliderTitleCell *preCell = [self.titleCollectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:[NSIndexPath indexPathForItem:preIndex inSection:0]];
-    CGRect preCellFrame = [self.titleCollectionView convertRect:preCell.frame toView:self.titleCollectionView];
-    CGFloat preLabelWidth = [self yj_calculateItemWithAtIndex:preIndex];
-    CGFloat preStartPointX = preCellFrame.origin.x + (preCellFrame.size.width - preLabelWidth) / 2;
-    
-    CGFloat rate = fabs(index - preIndex);
-    [self.sliderLine mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(preLabelWidth + (labelWidth - preLabelWidth) * rate);
-        make.left.mas_equalTo(preStartPointX + (startPointX - preStartPointX) * rate);
-    }];
-}
-
-- (void)updateSliderLinePosition:(CGFloat)index {
-    YJSliderTitleCell *cell = [self.titleCollectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
-    CGRect cellFrame = [self.titleCollectionView convertRect:cell.frame toView:self.titleCollectionView];
-    CGFloat labelWidth = [self yj_calculateItemWithAtIndex:index];
-    
-    [self.sliderLine mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(labelWidth);
-        make.left.mas_equalTo(cellFrame.origin.x + (cellFrame.size.width - labelWidth) / 2);
-    }];
-}
 
 #pragma mark - UICollectionViewDelegate & DataSource
 
@@ -325,6 +284,58 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     currentGreen = originGreen + (targetGreen - originGreen) * scale;
     currentBlue = originBlue + (targetBlue - originBlue) * scale;
     [btn setTitleColor:[UIColor colorWithRed:currentRed green:currentGreen blue:currentBlue alpha:1] forState:UIControlStateNormal];
+}
+
+/**
+ *  更新下划线位置
+ *
+ *  @param index 当前位置
+ */
+- (void)updateSliderLinePosition:(CGFloat)index fromIndex:(CGFloat)preIndex{
+    NSIndexPath *indexPath;
+    if (index == preIndex) {return;}
+    if (index > preIndex) {
+        indexPath = [NSIndexPath indexPathForItem:preIndex + 1 inSection:0];
+    } else if (index < preIndex){
+        indexPath = [NSIndexPath indexPathForItem:preIndex - 1 inSection:0];
+    }
+    
+    YJSliderTitleCell *cell = [self.titleCollectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:indexPath];
+    CGRect cellFrame = [self.titleCollectionView convertRect:cell.frame toView:self.titleCollectionView];
+    CGFloat labelWidth = [self yj_calculateItemWithAtIndex:indexPath.row];
+    CGFloat startPointX = cellFrame.origin.x + (cellFrame.size.width - labelWidth) / 2;
+    
+    YJSliderTitleCell *preCell = [self.titleCollectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:[NSIndexPath indexPathForItem:preIndex inSection:0]];
+    CGRect preCellFrame = [self.titleCollectionView convertRect:preCell.frame toView:self.titleCollectionView];
+    CGFloat preLabelWidth = [self yj_calculateItemWithAtIndex:preIndex];
+    CGFloat preStartPointX = preCellFrame.origin.x + (preCellFrame.size.width - preLabelWidth) / 2;
+    
+    CGFloat rate = fabs(index - preIndex);
+    [self.sliderLine mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(preLabelWidth + (labelWidth - preLabelWidth) * rate);
+        make.left.mas_equalTo(preStartPointX + (startPointX - preStartPointX) * rate);
+    }];
+}
+
+- (void)updateSliderLinePosition:(CGFloat)index {
+    YJSliderTitleCell *cell = [self.titleCollectionView dequeueReusableCellWithReuseIdentifier:@"YJSliderTitleCell" forIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+    CGRect cellFrame = [self.titleCollectionView convertRect:cell.frame toView:self.titleCollectionView];
+    CGFloat labelWidth = [self yj_calculateItemWithAtIndex:index];
+    
+    [self.sliderLine mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(labelWidth);
+        make.left.mas_equalTo(cellFrame.origin.x + (cellFrame.size.width - labelWidth) / 2);
+    }];
+}
+
+- (void)scrollToIndex:(NSInteger)index animated:(BOOL)animated {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    [self manageButtonStatus:indexPath.item];
+    [self.contentCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:animated];
+    [self.titleCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
+    [self updateSliderLinePosition:indexPath.item fromIndex:self.currentIndex];
+    [self.titleCollectionView reloadData];
+    self.currentIndex = indexPath.item;
 }
 
 #pragma mark - Collection Init
