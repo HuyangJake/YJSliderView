@@ -70,6 +70,28 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 
 @implementation YJSliderView
 
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.maxCountInScreen = 4;
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.maxCountInScreen = 4;
+    }
+    return self;
+}
+
+- (void)setMaxCountInScreen:(NSInteger)maxCountInScreen {
+    _maxCountInScreen = maxCountInScreen;
+}
+
 - (void)reloadData {
     [self.contentCollectionView reloadData];
     [self.titleCollectionView reloadData];
@@ -183,9 +205,11 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     CollectionViewType type = collectionView.tag;
     if (type == TITLE) {
         [self manageButtonStatus:indexPath.item];
-        [self.contentCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+        [self.contentCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         [self.titleCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+        [self updateSliderLinePosition:indexPath.item fromIndex:self.currentIndex];
         [self.titleCollectionView reloadData];
+        self.currentIndex = indexPath.item;
     }
 }
 
@@ -195,10 +219,10 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     if (collectionView == self.titleCollectionView) {
         NSInteger totalNum = [self.delegate numberOfItemsInYJSliderView:self];
         CGFloat width = 0;
-        if ( totalNum <= 4) {
+        if ( totalNum <= self.maxCountInScreen) {
             width = self.frame.size.width / totalNum;
         } else {
-            width = self.frame.size.width / 4;
+            width = self.frame.size.width / self.maxCountInScreen;
         }
         CGFloat calcWidth = [self yj_calculateItemWithAtIndex:indexPath.row] + 30;//加上左右各10的边距
         if (calcWidth > width) {
@@ -328,10 +352,10 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     
     UICollectionViewFlowLayout *topLayout = (UICollectionViewFlowLayout *)_titleCollectionView.collectionViewLayout;
     NSInteger totalNum = [self.delegate numberOfItemsInYJSliderView:self];
-    if ( totalNum <= 4) {
+    if ( totalNum <= self.maxCountInScreen) {
         topLayout.itemSize = CGSizeMake(self.frame.size.width / totalNum, topViewHeight);
     } else {
-        topLayout.itemSize = CGSizeMake(self.frame.size.width / 4, topViewHeight);
+        topLayout.itemSize = CGSizeMake(self.frame.size.width / self.maxCountInScreen, topViewHeight);
     }
     
     return _titleCollectionView;

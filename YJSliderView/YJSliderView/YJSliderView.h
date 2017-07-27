@@ -51,6 +51,8 @@
 
 @property (nonatomic, assign) CGFloat fontSize;
 
+@property (nonatomic, assign) NSInteger maxCountInScreen;
+
 - (void)reloadData;
 
 @end
