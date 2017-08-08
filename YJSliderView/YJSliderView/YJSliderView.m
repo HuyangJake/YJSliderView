@@ -216,6 +216,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         [self manageButtonStatus:index];
         [self.titleCollectionView reloadData];
     }
+    self.titleCollectionView.userInteractionEnabled = YES;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -236,6 +237,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         [self updateSliderLinePosition:indexValue fromIndex:currentIndexValue];
         [self updateLabelInCellAtIndex:currentIndexValue nextIndex:indexValue];
     }
+    self.titleCollectionView.userInteractionEnabled = NO;
 }
 
 #pragma mark - Actions
