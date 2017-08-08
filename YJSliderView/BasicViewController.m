@@ -65,4 +65,8 @@
     return 0;
 }
 
+- (void)changeCurrrentToIndex:(NSInteger)index {
+    NSLog(@"切换到位置%ld", index);
+}
+
 @end

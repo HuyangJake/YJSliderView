@@ -392,6 +392,9 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
 }
 
 - (void)manageButtonStatus:(NSInteger)index {
+    if ([self.delegate respondsToSelector:@selector(changeCurrrentToIndex:)]) {
+        [self.delegate changeCurrrentToIndex:index];
+    }
     for (NSNumber *number in self.statusDic.allKeys) {
         if ([number integerValue] == index) {
             [self.statusDic setObject:[NSNumber numberWithBool:YES] forKey:number];
