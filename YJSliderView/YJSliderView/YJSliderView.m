@@ -219,6 +219,10 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
     self.titleCollectionView.userInteractionEnabled = YES;
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.titleCollectionView.userInteractionEnabled = NO;
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     if (scrollView.tag == CONTENT) {
         [self scrollViewDidEndScrollingAnimation:scrollView];
@@ -237,7 +241,6 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         [self updateSliderLinePosition:indexValue fromIndex:currentIndexValue];
         [self updateLabelInCellAtIndex:currentIndexValue nextIndex:indexValue];
     }
-    self.titleCollectionView.userInteractionEnabled = NO;
 }
 
 #pragma mark - Actions
