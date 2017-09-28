@@ -39,7 +39,12 @@
  */
 - (NSInteger)yj_SliderView:(YJSliderView *)sliderView redDotNumForItemAtIndex:(NSInteger)index;
 
-- (void)changeCurrrentToIndex:(NSInteger)index;
+/**
+ 切换到指定位置后的代理方法
+
+ @param index 切换后的位置
+ */
+- (void)switchedToIndex:(NSInteger)index;
 
 @end
 
