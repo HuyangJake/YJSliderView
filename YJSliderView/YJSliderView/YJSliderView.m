@@ -166,7 +166,7 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         [self manageButtonStatus:indexPath.item];
         [self.contentCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         [self.titleCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
-        [self updateSliderLinePosition:indexPath.item fromIndex:self.currentIndex];
+        [self updateSliderLinePosition:indexPath.item];
         [self.titleCollectionView reloadData];
         self.currentIndex = indexPath.item;
     }
@@ -216,11 +216,11 @@ typedef NS_ENUM(NSUInteger, CollectionViewType) {
         [self manageButtonStatus:index];
         [self.titleCollectionView reloadData];
     }
-    self.titleCollectionView.userInteractionEnabled = YES;
+//    self.titleCollectionView.userInteractionEnabled = YES;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    self.titleCollectionView.userInteractionEnabled = NO;
+//    self.titleCollectionView.userInteractionEnabled = NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
